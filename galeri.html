@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto Desa Mensere - Kec. Tebas, Kab. Sambas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigasi -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Desa Mensere</h1>
+                <p>Kec. Tebas, Kab. Sambas</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profil.html">Profil Desa</a></li>
+                    <li><a href="layanan.html">Layanan Publik</a></li>
+                    <li><a href="potensi.html">Potensi Desa</a></li>
+                    <li><a href="galeri.html" class="active">Galeri</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container text-center">
+            <h2>Galeri Foto Kegiatan Desa & fasilitas</h2>
+            <p>Dokumentasi kebersihan, kebudayaan, dan potensi di Desa Mensere.</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section">
+        <div class="container">
+            
+            
+            <!-- Area Grid Galeri Foto -->
+            <div class="profile-block margin-top-20">
+                <h2 class="text-center">Koleksi Foto Desa</h2>
+                <div class="divider center"></div>
+                
+                <div id="galleryGrid" class="gallery-grid">
+                    <!-- Foto Bawaan / Default -->
+                    <div class="gallery-item">
+                        <img src="sd34mensere1.jpg" alt="SDN 34 MENSERE">
+                        <div class="gallery-caption">SDN 34 MENSERE</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="gotongroyong1.jpg" alt="KEGIATAN GOTONG ROYONG">
+                        <div class="gallery-caption">KEGIATAN GOTONG ROYONG</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="masjid.jpg" alt="FASILITAS MENSERE">
+                        <div class="gallery-caption">FASILITAS MENSERE</div>
+                    </div>
+                  <div class="gallery-item">
+                        <img src="menserelorong.jpg" alt="FASILITAS MENSERE">
+                        <div class="gallery-caption">FASILITAS MENSERE</div>
+                  </div>
+                  <div class="gallery-item">
+                        <img src="paudnurhidayah.jpg" alt="FASILITAS MENSERE">
+                        <div class="gallery-caption">FASILITAS MENSERE</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script Sederhana untuk Menambahkan Foto -->
+    <script>
+        const formTambahFoto = document.getElementById('formTambahFoto');
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        formTambahFoto.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const judul = document.getElementById('inputJudul').value;
+            const fileInput = document.getElementById('inputUpload');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    // Buat elemen div untuk foto baru
+                    const newItem = document.createElement('div');
+                    newItem.className = 'gallery-item';
+
+                    newItem.innerHTML = `
+                        <img src="${event.target.result}" alt="${judul}">
+                        <div class="gallery-caption">${judul}</div>
+                    `;
+
+                    // Tambahkan foto baru ke posisi paling atas galeri
+                    galleryGrid.insertBefore(newItem, galleryGrid.firstChild);
+
+                    // Reset form
+                    formTambahFoto.reset();
+                    alert('Foto berhasil ditambahkan ke galeri!');
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2026 Pemerintah Desa Mensere, Kecamatan Tebas, Kabupaten Sambas.</p>
+            <p>Dibuat untuk pelayanan masyarakat yang transparansi dan informatif.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
